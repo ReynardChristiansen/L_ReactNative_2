@@ -1,20 +1,49 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import ProductListing from './screens/productListing';
+import Favorites from './screens/favorites';
+import ProductDetails from './screens/productDetails';
+import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import ProductContext from './context';
+
+
+const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
+
+function BottomTabs(){
+  return(
+    <Tab.Navigator>
+      <Tab.Screen options={{title:'Product List'}} name="productListing" component={ProductListing} />
+      <Tab.Screen options={{title:'Favorites'}} name="favorites" component={Favorites} />
+    </Tab.Navigator>
+  )
+}
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ProductContext>
+        <View style={styles.container}>
+          <StatusBar style="auto"></StatusBar>
+
+          <NavigationContainer>
+              <Stack.Navigator>
+                  <Stack.Screen options={{headerShown:false}} name="bottomTabs" component={BottomTabs}/>
+                  <Stack.Screen options={{title:'Product Details'}} name="productDetails" component={ProductDetails}/>
+          
+              </Stack.Navigator>
+          </NavigationContainer>
+        </View>
+    </ProductContext>
+
+
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    
   },
 });
