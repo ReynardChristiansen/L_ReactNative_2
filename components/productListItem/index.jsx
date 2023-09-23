@@ -4,9 +4,9 @@ export default function ProductListItem({title, onPress, bgColor}){
 
     return(
         <View style={styles.productItemOuterContainer}>
-            <Pressable style={{...styles.pressableView, backgroundColor:bgColor  }}>
+            <Pressable android_ripple={{color:"#00BD00"}} onPress={onPress} style={{...styles.pressableView, backgroundColor:bgColor  }}>
                 <View style={styles.productItemInnerContainer}>
-                    <Text style={styles.title}>{title}</Text>
+                    <Text numberOfLines={1} ellipsizeMode="tail" style={styles.title}>{title}</Text>
                 </View>
             </Pressable>
         </View>
@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
         flex:1,
         margin:16,
         height:160,
-        borderRadius:8
     },
     pressableView:{
-        flex:1
+        flex:1,
+        borderRadius:10,
     },
     productItemInnerContainer:{
         flex:1,

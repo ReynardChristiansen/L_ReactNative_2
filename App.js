@@ -7,6 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import ProductContext from './context';
+import { useNavigation } from '@react-navigation/native';
+import { Button } from 'react-native';
 
 
 const Tab = createBottomTabNavigator()
@@ -31,7 +33,6 @@ export default function App() {
               <Stack.Navigator>
                   <Stack.Screen options={{headerShown:false}} name="bottomTabs" component={BottomTabs}/>
                   <Stack.Screen options={{title:'Product Details'}} name="productDetails" component={ProductDetails}/>
-          
               </Stack.Navigator>
           </NavigationContainer>
         </View>
